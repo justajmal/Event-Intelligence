@@ -58,3 +58,13 @@ body {
   border-radius: 9999px;
   box-shadow: none !important;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
