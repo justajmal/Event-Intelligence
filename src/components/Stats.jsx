@@ -1,31 +1,20 @@
-import { Reveal } from "./ui.jsx";
+import { Reveal, serif } from "./ui.jsx";
 
 const stats = [
-  ["20,000+", "Financial-services events scored"],
-  ["5", "Signals per score: asset classes, clients, competitors, territories, priorities"],
-  ["0", "Systems to install"],
-  ["0", "Sensitive client data required"],
+  ["20,000+", "in-person events"],
+  ["3,000+", "global sources"],
+  ["Day one", "personalization"],
 ];
 
 export default function Stats() {
   return (
-    <section className="relative px-6 -mt-8 md:-mt-16 z-10">
+    <section className="relative px-6 pt-8">
       <Reveal className="max-w-5xl mx-auto">
-        <div className="liquid-glass rounded-[28px] grid grid-cols-2 md:grid-cols-4">
-          {stats.map(([n, l], i) => (
-            <div
-              key={l}
-              className={`px-6 py-8 md:py-10 flex flex-col gap-2 ${i % 2 ? "border-l border-white/10" : ""} ${
-                i > 1 ? "border-t md:border-t-0 border-white/10" : ""
-              } ${i === 2 ? "md:border-l" : ""}`}
-            >
-              <span
-                style={{ fontFamily: "'Instrument Serif', serif" }}
-                className="text-4xl md:text-5xl text-white tabular-nums"
-              >
-                {n}
-              </span>
-              <span className="text-white/55 text-[13px] leading-snug">{l}</span>
+        <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
+          {stats.map(([n, l]) => (
+            <div key={l} className="py-8 sm:py-4 flex flex-col items-center gap-2 text-center">
+              <span style={serif} className="text-5xl md:text-6xl text-white tabular-nums">{n}</span>
+              <span className="text-white/55 text-[13px] tracking-wide">{l}</span>
             </div>
           ))}
         </div>
