@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { Reveal, Eyebrow, Heading, Section, serif, signals } from "./ui.jsx";
 
 const points = [
@@ -16,12 +16,12 @@ export default function Engine() {
             <Eyebrow>The engine</Eyebrow>
             <Heading>Thousands of signals. One clear direction.</Heading>
           </Reveal>
-          <ul className="flex flex-col">
+          <ul className="flex flex-col gap-3">
             {points.map(([t, d], i) => (
               <Reveal key={t} delay={i * 0.1}>
-                <li className="flex flex-col gap-1.5 py-6 border-t border-white/10">
-                  <h3 className="text-white text-[17px] font-medium">{t}</h3>
-                  <p className="text-white/55 text-[14px] leading-relaxed">{d}</p>
+                <li className="liquid-glass rounded-3xl p-6 flex flex-col gap-2 hover:bg-white/[0.03] transition-colors duration-500">
+                  <h3 className="text-[#f5f5f7] text-[15px] font-medium tracking-[-0.01em]">{t}</h3>
+                  <p className="lede-sm">{d}</p>
                 </li>
               </Reveal>
             ))}
@@ -45,7 +45,7 @@ export default function Engine() {
                 <li key={l} className="rounded-2xl bg-white/[0.03] border border-white/[0.06] px-4 py-2.5 flex items-center gap-4">
                   <span className="flex-1 min-w-0 text-white text-[13px] font-medium truncate">{l}</span>
                   <div className="w-20 sm:w-28 h-1 rounded-full bg-white/10 overflow-hidden">
-                    <motion.div
+                    <m.div
                       initial={{ width: 0 }}
                       whileInView={{ width: `${s}%` }}
                       viewport={{ once: true }}

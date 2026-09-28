@@ -1,7 +1,7 @@
-import { motion } from "motion/react";
+import { m } from "motion/react";
 
 export const serif = { fontFamily: "'Instrument Serif', serif" };
-export const DEMO_URL = "https://www.linkedin.com/in/bobdryzgula/";
+export const DEMO_URL = "https://www.linkedin.com/in/justajmal";
 
 export const signals = [
   ["Client Fit", 98],
@@ -17,7 +17,7 @@ export const signals = [
 
 export function Reveal({ children, delay = 0, className = "" }) {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
@@ -25,7 +25,7 @@ export function Reveal({ children, delay = 0, className = "" }) {
       className={className}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 

@@ -14,7 +14,7 @@ export default function Problem() {
           <Heading>Too many events. Too little signal.</Heading>
         </Reveal>
         <Reveal delay={0.1} className="lg:pt-10">
-          <p className="text-white/60 text-[15px] md:text-base leading-relaxed">
+          <p className="lede">
             Every year the calendar fills with thousands of conferences, summits, and forums. No team can read,
             rank, and reconcile them by hand, so the right rooms get lost in the noise. And while firms apply
             rigorous diligence before every investment, events get the opposite.
@@ -29,7 +29,7 @@ export default function Problem() {
               <span className="text-white/50 text-[10px] md:text-[11px] font-medium tracking-[0.2em] uppercase">{tag}</span>
               <div className="flex flex-col gap-3 flex-1">
                 <h3 style={serif} className="text-white text-3xl leading-tight">{t}</h3>
-                <p className="text-white/55 text-[14px] leading-relaxed">{d}</p>
+                <p className="lede-sm">{d}</p>
               </div>
               <div className="flex flex-col gap-2">
                 <div className="flex justify-between text-[12px]">
@@ -50,9 +50,9 @@ export default function Problem() {
           <p className="text-white/40">“Q: Why do we participate in that event?”</p>
           <p className="text-white"><em>“A: We did it last year.”</em></p>
         </div>
-        <p className="text-white/60 text-[15px] md:text-base leading-relaxed max-w-2xl">
+        <p className="lede max-w-2xl">
           If that answer drove your investment decisions, it would end careers. Yet firms spend millions on events
-          every year with exactly this level of rigor. Event Intelligence AI replaces anecdote and inertia with
+          every year with exactly this level of rigor. Event Intelligence Engine replaces anecdote and inertia with
           data and discipline.
         </p>
       </Reveal>

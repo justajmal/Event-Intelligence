@@ -1,9 +1,48 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap");
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+@layer components {
+  .lede-lg {
+    font-size: 15px;
+    line-height: 1.45;
+    letter-spacing: -0.005em;
+    font-weight: 400;
+    color: #a1a1a6;
+    text-wrap: balance;
+  }
+
+  .lede {
+    font-size: 15px;
+    line-height: 1.5;
+    letter-spacing: -0.008em;
+    font-weight: 400;
+    color: #a1a1a6;
+    text-wrap: pretty;
+  }
+
+  .lede-sm {
+    font-size: 13px;
+    line-height: 1.45;
+    letter-spacing: 0;
+    color: #86868b;
+  }
+
+  .lede-lg strong,
+  .lede strong {
+    color: #f5f5f7;
+    font-weight: 500;
+  }
+
+  @media (min-width: 768px) {
+    .lede-lg {
+      font-size: 17px;
+      line-height: 1.47;
+      letter-spacing: -0.01em;
+    }
+  }
 }
 
 :root {
@@ -16,7 +55,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.005em;
 }
 
 .liquid-glass {
@@ -69,18 +108,4 @@ html {
   }
 }
 
-.marquee {
-  animation: marquee 40s linear infinite;
-}
 
-@keyframes marquee {
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .marquee {
-    animation: none;
-  }
-}
