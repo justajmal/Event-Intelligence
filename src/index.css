@@ -58,6 +58,15 @@ body {
   letter-spacing: -0.005em;
 }
 
+.logo-haze {
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.15) 60%, transparent 75%);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  mask-image: radial-gradient(ellipse at center, #000 35%, transparent 72%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 35%, transparent 72%);
+  pointer-events: none;
+}
+
 .liquid-glass {
   background: rgba(255, 255, 255, 0.01);
   background-blend-mode: luminosity;
