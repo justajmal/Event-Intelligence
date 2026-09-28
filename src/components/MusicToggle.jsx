@@ -62,7 +62,7 @@ export default function MusicToggle() {
     audio.preload = "auto";
     audioRef.current = audio;
 
-    const events = ["pointerdown", "keydown", "touchstart"];
+    const events = ["pointerdown", "pointerup", "click", "keydown", "touchend"];
     const onFirstInteraction = (e) => {
       if (buttonRef.current?.contains(e.target)) return;
       removeListeners();
