@@ -15,7 +15,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               style={serif}
-              className="text-5xl md:text-[80px] font-medium tracking-[-0.01em] leading-[1.02] mb-6 bg-gradient-to-b from-white via-white/95 to-white/70 bg-clip-text text-transparent max-w-4xl"
+              className="text-5xl md:text-[80px] font-medium tracking-[-0.01em] leading-[1.15] px-2 pb-2 mb-4 bg-gradient-to-b from-white via-white/95 to-white/70 bg-clip-text text-transparent max-w-4xl"
             >
               Events Aplenty. <br className="hidden md:block" />
               <em>Engage Wisely.</em>
