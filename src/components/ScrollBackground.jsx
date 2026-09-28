@@ -1,13 +1,8 @@
 import { useEffect, useRef } from "react";
 
-const CLIPS = [
-  "/videos/crowd.mp4",
-  "/videos/keynote.mp4",
-  "/videos/panel.mp4",
-  "/videos/expo-walk.mp4",
-  "/videos/dubai-skyline.mp4",
-  "/videos/dubai-night.mp4",
-];
+const CLIPS = ["crowd", "keynote", "panel", "expo-walk", "dubai-skyline", "dubai-night"].map(
+  (name) => `${import.meta.env.BASE_URL}videos/${name}.mp4`
+);
 
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 
