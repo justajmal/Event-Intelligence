@@ -17,8 +17,8 @@ export default function Hero() {
               style={serif}
               className="text-5xl md:text-[80px] font-medium tracking-[-0.01em] leading-[1.02] mb-6 bg-gradient-to-b from-white via-white/95 to-white/70 bg-clip-text text-transparent max-w-4xl"
             >
-              Never Miss The <br className="hidden md:block" />
-              <em>Right Room.</em>
+              Events Aplenty. <br className="hidden md:block" />
+              <em>Choose Wisely.</em>
             </m.h1>
             <m.p
               initial={{ opacity: 0, y: 10 }}
