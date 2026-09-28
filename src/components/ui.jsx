@@ -1,7 +1,7 @@
 import { m } from "motion/react";
 
 export const serif = { fontFamily: "'Instrument Serif', serif" };
-export const DEMO_URL = "https://www.linkedin.com/in/justajmal";
+const DEMO_URL = "https://www.linkedin.com/in/justajmal";
 
 export const signals = [
   ["Client Fit", 98],

@@ -30,8 +30,7 @@
     color: #86868b;
   }
 
-  .lede-lg strong,
-  .lede strong {
+  .lede-lg strong {
     color: #f5f5f7;
     font-weight: 500;
   }
@@ -107,5 +106,3 @@ html {
     scroll-behavior: auto;
   }
 }
-
-
