@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { m, AnimatePresence } from "motion/react";
+import { useEffect, useRef, useState } from "react";
+import { m, AnimatePresence, useInView } from "motion/react";
 import { ArrowRight, Check } from "lucide-react";
 import { Reveal, Eyebrow, Heading, Section } from "./ui.jsx";
 
@@ -27,6 +27,51 @@ const checks = {
     return "";
   },
 };
+
+const easeOutExpo = (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
+
+function CountUp({ to, start, duration = 1800 }) {
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    if (!start) return;
+    let raf = 0;
+    const t0 = performance.now();
+    const tick = (now) => {
+      const p = Math.min(1, (now - t0) / duration);
+      setValue(Math.round(easeOutExpo(p) * to));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [start, to, duration]);
+
+  return <span className="tabular-nums">{value}</span>;
+}
+
+function SeatCount() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+
+  return (
+    <div ref={ref} className="flex flex-col items-center gap-3" aria-label={`${CLAIMED} of ${SEATS} seats claimed`}>
+      <p className="lede-sm text-white/55" aria-hidden="true">
+        <span className="text-[#f5f5f7] font-medium">
+          <CountUp to={CLAIMED} start={inView} duration={2000} />
+        </span>{" "}
+        of <CountUp to={SEATS} start={inView} duration={1400} /> seats claimed
+      </p>
+      <div className="w-40 h-px bg-white/10 overflow-hidden" aria-hidden="true">
+        <m.div
+          className="h-full bg-white/70 origin-left"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: inView ? CLAIMED / SEATS : 0 }}
+          transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
+        />
+      </div>
+    </div>
+  );
+}
 
 function Field({ id, label, value, error, showError, onChange, onBlur, ...props }) {
   const valid = value && !error;
@@ -206,9 +251,8 @@ export default function Founding() {
               </m.form>
             )}
           </AnimatePresence>
-          <p className="lede-sm text-white/35 tabular-nums">
-            {CLAIMED} of {SEATS} seats claimed · Every application reviewed personally
-          </p>
+          <SeatCount />
+          <p className="lede-sm text-white/35">Every application reviewed personally</p>
         </Reveal>
       </div>
     </Section>
