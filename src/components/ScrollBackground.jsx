@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-const CLIPS = ["crowd", "keynote", "panel", "expo-walk", "dubai-skyline", "dubai-night"].map(
+const CLIPS = ["tech-vr", "keynote", "panel", "expo-walk", "dubai-skyline", "dubai-night"].map(
   (name) => `${import.meta.env.BASE_URL}videos/${name}.mp4`
 );
 
