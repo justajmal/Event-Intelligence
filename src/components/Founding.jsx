@@ -12,7 +12,9 @@ const perks = [
   "Referrals that can make it free",
 ];
 
-const LINKEDIN = /^(https?:\/\/)?([a-z]{2,3}\.)?linkedin\.com\/in\/[\w\-%.]+\/?$/i;
+const FORM_ENDPOINT = "https://formsubmit.co/ajax/sheikajmal1009@gmail.com";
+
+const LINKEDIN =/^(https?:\/\/)?([a-z]{2,3}\.)?linkedin\.com\/in\/[\w\-%.]+\/?$/i;
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const PERSONAL = /@(gmail|yahoo|hotmail|outlook|live|icloud|me|aol|proton(mail)?)\./i;
 
@@ -73,10 +75,13 @@ function Field({ id, label, value, error, showError, onChange, onBlur, ...props 
 export default function Founding() {
   const [values, setValues] = useState({ linkedin: "", email: "" });
   const [touched, setTouched] = useState({});
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState("idle");
+  const [honey, setHoney] = useState("");
+  const sent = status === "sent";
+  const sending = status === "sending";
 
   const errors = { linkedin: checks.linkedin(values.linkedin), email: checks.email(values.email) };
-  const ready = !errors.linkedin && !errors.email;
+  const ready = !errors.linkedin && !errors.email && !sending;
 
   const bind = (name) => ({
     value: values[name],
@@ -86,10 +91,29 @@ export default function Founding() {
     onBlur: () => setTouched((t) => ({ ...t, [name]: true })),
   });
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     setTouched({ linkedin: true, email: true });
-    if (ready) setSent(true);
+    if (!ready) return;
+    setStatus("sending");
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          LinkedIn: values.linkedin.trim(),
+          Email: values.email.trim(),
+          _subject: "New Founding 100 application",
+          _replyto: values.email.trim(),
+          _template: "table",
+          _honey: honey,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      setStatus(res.ok && String(data.success) !== "false" ? "sent" : "error");
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -145,20 +169,40 @@ export default function Founding() {
                   {...bind("linkedin")}
                 />
                 <Field id="f-email" label="Professional email" type="email" autoComplete="email" {...bind("email")} />
+                <input
+                  type="text"
+                  name="_honey"
+                  value={honey}
+                  onChange={(e) => setHoney(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="hidden"
+                />
                 <button
                   type="submit"
                   aria-disabled={!ready}
+                  aria-busy={sending}
                   className={`group mt-6 self-center flex items-center gap-2 rounded-full border px-6 py-2.5 text-[14px] font-medium transition-all duration-300 ${
                     ready
                       ? "border-white/30 text-white hover:bg-white hover:text-black cursor-pointer"
                       : "border-white/10 text-white/35 cursor-not-allowed"
                   }`}
                 >
-                  Apply for a seat
-                  <ArrowRight
-                    className={`w-4 h-4 transition-transform duration-300 ${ready ? "group-hover:translate-x-1" : ""}`}
-                  />
+                  {sending ? "Sending…" : "Apply for a seat"}
+                  {sending ? (
+                    <span className="w-3.5 h-3.5 rounded-full border border-white/30 border-t-white animate-spin" />
+                  ) : (
+                    <ArrowRight
+                      className={`w-4 h-4 transition-transform duration-300 ${ready ? "group-hover:translate-x-1" : ""}`}
+                    />
+                  )}
                 </button>
+                {status === "error" && (
+                  <p role="alert" className="lede-sm text-[#ff6961]">
+                    Something went wrong sending your application. Please try again.
+                  </p>
+                )}
               </m.form>
             )}
           </AnimatePresence>
