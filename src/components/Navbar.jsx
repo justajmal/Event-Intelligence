@@ -8,7 +8,7 @@ export default function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       className="fixed top-0 inset-x-0 z-50 w-full pointer-events-none"
     >
-      <div className="px-6 py-5 max-w-6xl mx-auto">
+      <div className="px-5 py-5 md:px-8 md:py-6 lg:px-10">
         <a href="#top" className="inline-block pointer-events-auto">
           <Logo className="h-7 w-auto text-white" />
         </a>
