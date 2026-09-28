@@ -1,5 +1,6 @@
 import { LazyMotion, domAnimation } from "motion/react";
 import Navbar from "./components/Navbar.jsx";
+import MusicToggle from "./components/MusicToggle.jsx";
 import Hero from "./components/Hero.jsx";
 import Stats from "./components/Stats.jsx";
 import Problem from "./components/Problem.jsx";
@@ -16,6 +17,7 @@ export default function App() {
     <LazyMotion features={domAnimation} strict>
       <main className="relative bg-black min-h-screen w-full overflow-x-clip selection:bg-white selection:text-black">
         <Navbar />
+        <MusicToggle />
         <Hero />
         <ScrollBackground>
           <Stats />
